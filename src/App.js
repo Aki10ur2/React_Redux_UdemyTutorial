@@ -1,34 +1,28 @@
 import React from "react";
 
-/**
- * Class Component の例
- */
-// class App extends Component {
-//   render() {
-//     return (
-//       <React.Fragment>
-//         <label htmlFor="huga"></label>
-//         <input type="text" onChange={() => {console.log('text changed')}}/>
-//       </React.Fragment>
-//     );
-//   }
-// }
-
-/**
- * Functional Component の例
- */
 const App = () => {
+  const propfiles = [
+    { name: "Taro", age: 10},
+    { name: "Hanako", age: 5},
+    { name: "NoName"}
+  ]
   return (
     <div>
-      <Cat />
-      <Cat />
-      <Cat />
+      {
+        propfiles.map((profile, index) => {
+          return <User name={profile.name} age={profile.age} key={index}/>
+        })
+      }
     </div>
   );
 };
 
-const Cat = () => {
-  return <div>Meow!</div>;
+const User = (props) => {
+return <div>Hi, I am {props.name}, and {props.age} years old!</div>;
 };
+
+User.defaultProps = {
+  age: 1
+}
 
 export default App;
